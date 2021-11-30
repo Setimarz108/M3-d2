@@ -1,8 +1,4 @@
 
-
-
-
-
  const display_artist = () => {  
      
     fetch("https://deezerdevs-deezer.p.rapidapi.com/search?q=eminem", {
@@ -13,15 +9,15 @@
 	}
 })
 .then(response => response.json())
-.then(data => {
+.then(music => {
 
     //DOM MANIPULATION
-    console.log(data)
+    console.log(music)
 
     const row = document.querySelector(".row")
 
-    for (let i = 0; i < data.length; i++) {
-        const data = data.data[i]
+    for (let i = 0; i < music.data.length; i++) {
+        const artist_info = music.data[i]
 
         const col = document.createElement("div")
         col.className = "col-3"
@@ -29,11 +25,11 @@
 
         col.innerHTML = `
     <div class="card">
-        <img src=${data.data[i].album.cover} class="card-img-top" alt=${data[0].title} image>
+        <img src=${artist_info.album.cover} class="card-img-top" alt=${artist_info.title} image>
         <div class="card-body">
-            <h5 class="card-title">${data[0].title}</h5>
-            <p class="card-text">${data[0].title_version}</p>
-            <a href="#" class="btn btn-primary">${data[0].title_shorts}</a>
+            <h5 class="card-title">${artist_info.title}</h5>
+            <p class="card-text">${artist_info.title_version}</p>
+            <a href="#" class="btn btn-primary">${artist_info.title_shorts}</a>
         </div>
     </div>
     `
@@ -46,10 +42,6 @@
 });
 }
 
-window.onload = () => {
-    document.querySelector("button").addEventListener("click", display_artist)
-
-    }
 
 
  
